@@ -1,0 +1,241 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const podcasts = [
+  {
+    source: 'Impact Innovators at the Fireside',
+    title: 'Teaching AI to Save Humanity',
+    date: 'January 2025',
+    desc: 'Intimate fireside conversation with Arjé Cahn (Shamrock Ventures) recorded in a forest cabin. Discussing how FruitPunch AI harnesses AI to solve humanity\'s greatest challenges, challenge-based learning, and the vision for 1 million AI engineers by 2030.',
+    platform: 'Substack',
+    link: 'https://www.cahn.com/p/teaching-ai-to-save-humanity-with-9b1'
+  },
+  {
+    source: 'Innovators Can Laugh',
+    title: 'Transforming Diverse Experiences into FruitPunch AI',
+    date: 'August 2023',
+    desc: 'Dutch Startups series — how a diverse background (acting, security, teaching) led to creating a 2,500+ engineer community.',
+    platform: 'Apple Podcasts',
+    link: 'https://podcasts.apple.com/us/podcast/how-buster-transformed-his-diverse-experiences-into/id1567328445?i=1000623992011'
+  },
+  {
+    source: 'The Automagic Podcast',
+    title: 'Building AI Projects for Social Impact',
+    date: 'January 2023',
+    desc: 'With Jasper Wognum about how FruitPunch AI builds AI projects for social impact and the challenge-based learning model.',
+    platform: 'Apple Podcasts',
+    link: 'https://podcasts.apple.com/us/podcast/building-ai-projects-for-social-impact/id1573599014?i=1000594240922'
+  },
+  {
+    source: 'AI Game Changers',
+    title: 'AI Game Changers with Buster Franken',
+    date: 'December 2022',
+    desc: 'Discussion about FruitPunch AI\'s mission to develop challenge-based AI education and create real-world impact.',
+    platform: 'Spotify',
+    link: 'https://creators.spotify.com/pod/profile/aigamechangers/episodes/AI-Game-Changers-with-Buster-Franken---FruitPunch-e1ruv3r'
+  }
+];
+
+const videos = [
+  {
+    source: 'Innovators Can Laugh',
+    title: 'How Buster Transformed Diverse Experiences into FruitPunch AI',
+    date: 'August 2023',
+    desc: 'YouTube version of the podcast episode discussing how diverse experiences led to creating a thriving AI community of 2,500+ engineers.',
+    platform: 'YouTube',
+    link: 'https://www.youtube.com/watch?v=dvxic39Ure8'
+  },
+  {
+    source: 'FruitPunch AI Channel',
+    title: 'FruitPunch AI Official YouTube Channel',
+    date: 'Ongoing',
+    desc: 'Official FruitPunch AI YouTube channel featuring project showcases, challenge highlights, and community content.',
+    platform: 'YouTube',
+    link: 'https://www.youtube.com/channel/UCQamYlJKDaAAliiDUpn8s6g'
+  }
+];
+
+const press = [
+  {
+    outlet: 'Silicon Canals',
+    headline: 'Greenpeace, FrisseWind and FruitPunch AI Team Up to Monitor Illegal Air Pollution',
+    year: '2022',
+    desc: 'Coverage of the AI against Toxic Clouds challenge — automated detection of illegal emissions from Tata Steel that led to \u20AC4.1M in fines.',
+    link: 'https://siliconcanals.com/fruitpunch-ai-to-monitor-illegal-air-pollution/'
+  },
+  {
+    outlet: 'EU-Startups',
+    headline: 'Dutch Startup FruitPunch AI Lands Six-Figure Investment',
+    year: 'January 2021',
+    desc: 'Coverage of our seed funding round to create future AI and data talent for good, with investment from Thomas Wolf (Hugging Face).',
+    link: 'https://eu-startups.com/2021/01/dutch-startup-fruitpunch-ai-lands-six-figure-investment-to-create-future-ai-and-data-talent-for-good'
+  },
+  {
+    outlet: 'LUMO Labs',
+    headline: 'LUMO Labs Invests in FruitPunch AI\u2019s Approach',
+    year: '2021',
+    desc: 'Investment announcement and detailed overview of FruitPunch AI\'s approach to creating future AI talent through challenge-based learning.',
+    link: 'https://lumolabs.io/lumo-labs-invests-in-fruitpunch-ais-approach-to-creating-future-ai-and-data-talent/'
+  },
+  {
+    outlet: 'Brainport Eindhoven',
+    headline: 'Founder FruitPunch AI About Leveraging AI for Social Impact',
+    year: '2022',
+    desc: 'Interview about the AI for Good mission and how FruitPunch connects AI engineers with impactful challenges.',
+    link: 'https://brainporteindhoven.com/en/news/founder-fruitpunch-ai-about-leveraging-ai-for-social-impact'
+  },
+  {
+    outlet: 'Silicon Canals',
+    headline: 'Eindhoven-based FruitPunch AI Secures \u20AC500K from Shamrock Ventures',
+    year: 'June 2023',
+    desc: 'Coverage of the \u20AC500K funding round led by Shamrock Ventures to drive global \u2018AI for Good\u2019 missions and expand platform features.',
+    link: 'https://siliconcanals.com/eindhoven-fruitpunch-ai-bags-500k/'
+  },
+  {
+    outlet: 'Silicon Canals',
+    headline: 'Dutch Startup FruitPunch AI Bags Six-Figure Investment',
+    year: '2021',
+    desc: 'Coverage of the initial six-figure investment from LUMO Labs Fund II to solve humanity\'s greatest challenges through AI.',
+    link: 'https://siliconcanals.com/eindhoven-fruitpunch-ai-funding/'
+  },
+  {
+    outlet: 'High Tech Campus Eindhoven',
+    headline: 'LUMO Labs Invests in FruitPunch AI\u2019s Approach',
+    year: '2021',
+    desc: 'Investment announcement recognizing FruitPunch AI\'s approach to creating future AI and Data talent aligned with Conscious Tech and UN Sustainable Development Goals.',
+    link: 'https://blog.hightechcampus.com/htce/lumo-labs-invests-in-fruitpunch-ais-approach-to-creating-future-ai-and-data-talent'
+  }
+];
+
+const stats = [
+  { number: '\u20AC45M', label: 'AI Engineering Crowdsourced' },
+  { number: '4,500+', label: 'AI Engineers Led' },
+  { number: '80+', label: 'Partner Organizations' }
+];
+---
+
+<Layout title="Media — Eigenvector" description="Podcast appearances, press coverage, and key numbers from Buster Franken's work.">
+
+  <div class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">Media</h1>
+      <p class="page-hero__desc">Podcast appearances, press coverage, and key numbers.</p>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- Podcast Appearances -->
+  <section class="work-section">
+    <div class="container">
+      <div class="work-section__header">
+        <div>
+          <span class="section-label">Podcasts</span>
+          <h2>Podcast appearances</h2>
+        </div>
+      </div>
+      <div class="media-grid">
+        {podcasts.map(p => (
+          <a href={p.link} target="_blank" rel="noopener" class="media-card">
+            <div class="media-card__source">{p.source}</div>
+            <h3 class="media-card__title">{p.title}</h3>
+            <span class="media-card__date">{p.date}</span>
+            <p class="media-card__desc">{p.desc}</p>
+            <span class="media-card__link">{p.platform} &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" style="max-width: 1100px; margin: 0 auto;" />
+
+  <!-- Press Coverage -->
+  <section class="work-section" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <div class="work-section__header">
+        <div>
+          <span class="section-label">Press</span>
+          <h2>Press coverage</h2>
+        </div>
+      </div>
+      <div class="media-grid">
+        {press.map(p => (
+          <a href={p.link} target="_blank" rel="noopener" class="media-card">
+            <div class="media-card__source">{p.outlet}</div>
+            <h3 class="media-card__title">{p.headline}</h3>
+            <span class="media-card__date">{p.year}</span>
+            <p class="media-card__desc">{p.desc}</p>
+            <span class="media-card__link">Read article &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" style="max-width: 1100px; margin: 0 auto;" />
+
+  <!-- YouTube Videos -->
+  <section class="work-section">
+    <div class="container">
+      <div class="work-section__header">
+        <div>
+          <span class="section-label">Video</span>
+          <h2>YouTube appearances</h2>
+        </div>
+      </div>
+      <div class="media-grid">
+        {videos.map(v => (
+          <a href={v.link} target="_blank" rel="noopener" class="media-card">
+            <div class="media-card__source">{v.source}</div>
+            <h3 class="media-card__title">{v.title}</h3>
+            <span class="media-card__date">{v.date}</span>
+            <p class="media-card__desc">{v.desc}</p>
+            <span class="media-card__link">{v.platform} &rarr;</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" style="max-width: 1100px; margin: 0 auto;" />
+
+  <!-- Key Numbers -->
+  <section class="work-section" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <div class="work-section__header">
+        <div>
+          <span class="section-label">Impact</span>
+          <h2>Key numbers</h2>
+        </div>
+      </div>
+      <div class="stats-grid">
+        {stats.map(s => (
+          <div class="stat-card">
+            <span class="stat-card__number">{s.number}</span>
+            <span class="stat-card__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="contact" id="contact" style="padding: 5rem 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 0.75rem;">Want to feature Buster Franken?</h2>
+      <p class="contact__intro">Get in touch for interviews, podcasts, or press inquiries.</p>
+      <div class="btn-group">
+        <a href="mailto:buster@eigenvector.pro" class="btn btn--primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email me
+        </a>
+        <a href="https://wa.me/31624877967" target="_blank" rel="noopener" class="btn btn--outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
