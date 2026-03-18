@@ -1,0 +1,157 @@
+---
+---
+
+<section class="hero">
+  <div class="hero__canvas-wrap">
+    <canvas class="hero__canvas" id="particle-canvas"></canvas>
+    <img src="/images/logo.png" alt="Eigenvector" class="hero__logo" id="hero-logo" />
+  </div>
+  <h1 class="hero__title">Eigenvector</h1>
+  <p class="hero__tagline">I find your direction. Then I build along it.</p>
+  <div class="btn-group">
+    <a href="mailto:busterfranken@gmail.com" class="btn btn--primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      Email me
+    </a>
+    <a href="https://wa.me/31624877967" target="_blank" rel="noopener" class="btn btn--outline">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+</section>
+
+<script>
+  const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
+  const logo = document.getElementById('hero-logo') as HTMLImageElement;
+
+  if (canvas) {
+    const ctx = canvas.getContext('2d')!;
+    const wrap = canvas.parentElement!;
+
+    const size = wrap.offsetWidth;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    ctx.scale(dpr, dpr);
+
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = '/images/logo.png';
+
+    img.onload = () => {
+      const sampleSize = size;
+      const offscreen = document.createElement('canvas');
+      const offCtx = offscreen.getContext('2d')!;
+      offscreen.width = sampleSize;
+      offscreen.height = sampleSize;
+      offCtx.drawImage(img, 0, 0, sampleSize, sampleSize);
+
+      const imageData = offCtx.getImageData(0, 0, sampleSize, sampleSize);
+      const pixels = imageData.data;
+
+      // Responsive sample step: fewer particles on mobile
+      const step = size < 280 ? 5 : 3;
+
+      interface Particle {
+        startX: number;
+        startY: number;
+        targetX: number;
+        targetY: number;
+        r: number;
+        g: number;
+        b: number;
+        size: number;
+        delay: number;
+        settled: boolean;
+      }
+
+      const particles: Particle[] = [];
+
+      for (let y = 0; y < sampleSize; y += step) {
+        for (let x = 0; x < sampleSize; x += step) {
+          const i = (y * sampleSize + x) * 4;
+          const r = pixels[i], g = pixels[i + 1], b = pixels[i + 2], a = pixels[i + 3];
+          const brightness = (r + g + b) / 3;
+
+          if (brightness < 160 && a > 128) {
+            particles.push({
+              startX: Math.random() * size,
+              startY: Math.random() * size,
+              targetX: x,
+              targetY: y,
+              r, g, b,
+              size: 0.8 + Math.random() * 0.8,
+              delay: Math.random() * 600,
+              settled: false
+            });
+          }
+        }
+      }
+
+      const duration = 2200;
+      let start: number | null = null;
+      let allSettledAt: number | null = null;
+
+      function easeOutCubic(t: number) {
+        return 1 - Math.pow(1 - t, 3);
+      }
+
+      function animate(timestamp: number) {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+
+        ctx.clearRect(0, 0, size, size);
+
+        let allDone = true;
+
+        for (const p of particles) {
+          const particleElapsed = Math.max(0, elapsed - p.delay);
+          let progress = Math.min(particleElapsed / duration, 1);
+          const ease = easeOutCubic(progress);
+
+          const x = p.startX + (p.targetX - p.startX) * ease;
+          const y = p.startY + (p.targetY - p.startY) * ease;
+
+          // Fade in particle
+          const alpha = Math.min(particleElapsed / 400, 1);
+
+          if (progress < 1) allDone = false;
+
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = `rgb(${p.r}, ${p.g}, ${p.b})`;
+          ctx.fillRect(x, y, p.size, p.size);
+        }
+
+        ctx.globalAlpha = 1;
+
+        if (allDone) {
+          if (!allSettledAt) allSettledAt = timestamp;
+          const settledElapsed = timestamp - allSettledAt;
+
+          if (settledElapsed > 400) {
+            const fade = Math.min((settledElapsed - 400) / 700, 1);
+            canvas.style.opacity = String(1 - fade);
+            logo?.classList.add('is-visible');
+
+            if (fade >= 1) {
+              canvas.style.display = 'none';
+              return;
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    // Fallback: if image fails or takes too long, just show the logo
+    setTimeout(() => {
+      if (!logo?.classList.contains('is-visible')) {
+        canvas.style.display = 'none';
+        logo?.classList.add('is-visible');
+      }
+    }, 8000);
+  }
+</script>

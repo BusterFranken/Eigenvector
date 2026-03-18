@@ -1,0 +1,199 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const consultingProjects = [
+  {
+    title: 'AI Policy Advisory',
+    tag: 'Government',
+    desc: 'Advised the Dutch government (Province of Noord-Brabant) on AI policy, ethics, and regional AI strategy as a member of the AI Advisory Board.',
+    image: null
+  },
+  {
+    title: 'EAISI Experience Room',
+    tag: 'University',
+    desc: 'Built the AI experience room at Eindhoven University of Technology: six physical demos of cutting-edge AI research. Part of the founding team of the EAISI institute.',
+    image: null
+  },
+  {
+    title: 'Sustainable Digitization Strategy',
+    tag: 'Coalition',
+    desc: 'Strategic board member of the Dutch Coalition for Sustainable Digitization (NCDD), shaping national goals for responsible tech.',
+    image: null
+  },
+  {
+    title: 'Challenge-Based Learning in AI',
+    tag: 'Education',
+    desc: 'Designed and ran a challenge-based learning AI program for Eindhoven University of Technology. Sourced real-world stakeholders and data, designed the full curriculum, hired mentors, and executed the program end-to-end.',
+    image: null
+  },
+  {
+    title: 'Artwork Damage Reconstruction',
+    tag: 'Art & Science',
+    desc: 'Used scientific methods and 3D rendering to reconstruct a damaged artwork from gallery photographs for a private art dealer. The reconstruction proved the piece was damaged while on display, helping secure restitution of nearly €500,000.',
+    image: null
+  },
+  {
+    title: 'AI Introduction Program',
+    tag: 'Corporate',
+    desc: 'Delivered four sessions for Achmea introducing the organization to the benefits of AI, practical applications, and inspiring stories of AI for good implementation.',
+    image: null
+  },
+  {
+    title: 'Guest Lecturer, Innovation Management',
+    tag: 'University',
+    desc: 'Recurring guest lecturer at Eindhoven University of Technology on AI for Good and impact startups for the Innovation Management master\'s program.',
+    image: null
+  }
+];
+
+const fruitpunchProjects = [
+  {
+    title: 'AI-powered Wildlife Conservation in Africa',
+    tag: 'Wildlife',
+    desc: 'Computer vision models to detect and track wildlife across the African savanna, supporting conservation efforts at scale.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6641cd12fd14fd9cef2776fa_header.jpeg.jpeg',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/ai-powered-wildlife-conservation-in-africa/index.html'
+  },
+  {
+    title: 'AI for Coral Reefs',
+    tag: 'Earth',
+    desc: 'Automated coral reef health assessment using underwater imagery and deep learning to support marine conservation.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6633521ff6c8da6a897ef8ab_header.jpeg.jpeg',
+    link: 'https://www.busterfranken.com/fruitpunch/challenges/ai-for-coral-reefs/index.html'
+  },
+  {
+    title: 'Detecting Oil Spills on Open Sea',
+    tag: 'Earth',
+    desc: 'Satellite imagery analysis with AI to detect and track oil spills in open waters, enabling faster environmental response.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_667bd8983a99eb471f03d3cd_header.jpeg.jpeg',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/how-we-detect-oil-spills/index.html'
+  },
+  {
+    title: 'Heart Failure Detection from ECGs',
+    tag: 'Health',
+    desc: 'AI models to detect early signs of heart failure from electrocardiogram data, potentially saving lives through early diagnosis.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6641d5f44ba58d59226b5e47_header.png.png',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/can-ai-detect-heart-failure-from-electrocardiograms/index.html'
+  },
+  {
+    title: 'Tracking Reforestation with AI',
+    tag: 'Earth',
+    desc: 'Using drone and satellite data with AI to monitor and verify reforestation projects worldwide.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6641c8823a2d1861f07fbe62_header.png.png',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/can-ai-track-reforestation-projects-using-drone-and-satellite-data/index.html'
+  },
+  {
+    title: 'Preventing Sepsis in Preterm Babies',
+    tag: 'Health',
+    desc: 'AI-based early warning system to detect sepsis in preterm infants, giving medical teams critical extra time.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6641cf46dd58a961950cb268_header.png.png',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/how-we-applied-ai-to-prevent-sepsis-in-preterm-babies/index.html'
+  },
+  {
+    title: 'Autonomous Fixed-Wing UAV Landing',
+    tag: 'Autonomous',
+    desc: 'Reinforcement learning for autonomous flight control and precision landing of fixed-wing drones.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6641c9dc690de4376b9fb022_header.jpeg.jpeg',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/autonomous-flight-and-the-landing-of-a-fixed-wing-uav/index.html'
+  },
+  {
+    title: 'AI for Road Safety',
+    tag: 'Safety',
+    desc: 'Data-driven approach combining AI and visualization to improve road safety analysis and accident prevention.',
+    image: 'https://www.busterfranken.com/fruitpunch/assets/62604c2173fafef5f182b55a_6641dcd23e855f21eac7935a_header.jpeg.jpeg',
+    link: 'https://www.busterfranken.com/fruitpunch/blog/ai-and-visualisations-a-data-driven-all-rounded-approach-for-road-safety/index.html'
+  }
+];
+---
+
+<Layout title="Work — Eigenvector" description="Selected projects and case studies from Buster Franken's consulting, advisory, and AI work.">
+
+  <div class="page-hero">
+    <div class="container">
+      <h1 class="page-hero__title">Work</h1>
+      <p class="page-hero__desc">A selection of projects across consulting, advisory, and AI for impact.</p>
+    </div>
+  </div>
+
+  <hr class="rule" />
+
+  <!-- Consulting & Advisory -->
+  <section class="work-section">
+    <div class="container">
+      <div class="work-section__header">
+        <div>
+          <span class="section-label">Consulting & Advisory</span>
+          <h2>Selected engagements</h2>
+        </div>
+      </div>
+      <div class="project-grid">
+        {consultingProjects.map(p => (
+          <div class="project-card">
+            {p.image && <img src={p.image} alt={p.title} class="project-card__image" />}
+            <div class="project-card__body" style={!p.image ? 'padding-top: 1.75rem;' : ''}>
+              <div class="project-card__tag">{p.tag}</div>
+              <h3 class="project-card__title">{p.title}</h3>
+              <p class="project-card__desc">{p.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" style="max-width: 1100px; margin: 0 auto;" />
+
+  <!-- FruitPunch AI -->
+  <section class="work-section" style="background: var(--color-bg-alt);">
+    <div class="container">
+      <div class="work-section__header">
+        <div>
+          <span class="section-label">FruitPunch AI</span>
+          <h2>AI for impact: 50+ projects, 4500+ engineers</h2>
+        </div>
+        <a href="https://www.busterfranken.com/projects.html" target="_blank" rel="noopener" class="work-section__link">
+          View full archive &rarr;
+        </a>
+      </div>
+      <p style="color: var(--color-text-light); margin-bottom: 2rem; max-width: 650px;">
+        As founder &amp; CEO of FruitPunch AI, I led the platform that crowdsourced &euro;45M in AI engineering for organizations like Stanford, ESA, and Greenpeace. Here's a selection of the 50+ projects our community delivered.
+      </p>
+      <div class="project-grid">
+        {fruitpunchProjects.map(p => (
+          <a href={p.link} target="_blank" rel="noopener" class="project-card" style="text-decoration:none; color:inherit;">
+            <img src={p.image} alt={p.title} class="project-card__image" loading="lazy" />
+            <div class="project-card__body">
+              <div class="project-card__tag">{p.tag}</div>
+              <h3 class="project-card__title">{p.title}</h3>
+              <p class="project-card__desc">{p.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div style="text-align: center; margin-top: 2.5rem;">
+        <a href="https://www.busterfranken.com/projects.html" target="_blank" rel="noopener" class="btn btn--outline">
+          View all 50+ projects &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="contact" id="contact" style="padding: 5rem 0;">
+    <div class="container">
+      <h2 style="margin-bottom: 0.75rem;">Interested in working together?</h2>
+      <p class="contact__intro">I'd love to hear about your project.</p>
+      <div class="btn-group">
+        <a href="mailto:busterfranken@gmail.com" class="btn btn--primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email me
+        </a>
+        <a href="https://wa.me/31624877967" target="_blank" rel="noopener" class="btn btn--outline">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

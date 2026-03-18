@@ -1,0 +1,44 @@
+---
+const services = [
+  {
+    number: '01',
+    title: 'Startup Advisory',
+    desc: 'Positioning, go-to-market, fundraising prep, partnerships, and exit strategy, drawing from my own experience building and selling a startup. Available as an ongoing advisor or for single deep-dive sessions.'
+  },
+  {
+    number: '02',
+    title: 'Experience Design',
+    desc: 'I design and build workshops, events, learning programs, community formats, onboarding flows, and product experiences that create a genuine shift for participants. From the arc to the prompts to the space, and then I build and run it myself.'
+  },
+  {
+    number: '03',
+    title: 'AI Strategy & Product Building',
+    desc: 'Helping organizations navigate the AI landscape, build talent pipelines, and connect into the right ecosystems. When needed, I also roll up my sleeves and build the product, prototype, or tool.'
+  },
+  {
+    number: '04',
+    title: 'Speaking & Facilitation',
+    desc: 'Keynotes, guest lectures, panel facilitation, and workshop hosting on AI, impact entrepreneurship, and community building. Background in the performing arts helps.'
+  }
+];
+---
+
+<section class="services" id="services">
+  <div class="container">
+    <span class="section-label">What I Do</span>
+    <div class="services__grid">
+      {services.map(s => (
+        <div class="service-card">
+          <span class="service-card__number">{s.number}</span>
+          <div>
+            <h3 class="service-card__title">{s.title}</h3>
+            <p class="service-card__desc">{s.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="services__coda">
+      Unlike most advisors, I also build. If a prototype, tool, or product is what's needed: I make it.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+const orgs = [
+  'Stanford',
+  'ESA',
+  'Greenpeace',
+  'WWF',
+  'Huawei',
+  'NXP',
+  'Philips',
+  'AWS',
+  'TU/e',
+  'Dutch Government'
+];
+---
+
+<section class="logo-bar">
+  <div class="container">
+    <span class="section-label" style="text-align:center; display:block;">Trusted By</span>
+    <div class="logo-bar__grid">
+      {orgs.map(name => (
+        <span class="logo-bar__item">{name}</span>
+      ))}
+    </div>
+  </div>
+</section>

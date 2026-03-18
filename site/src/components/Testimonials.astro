@@ -1,0 +1,87 @@
+---
+const testimonials = [
+  {
+    quote: 'Buster gets people excited for collaboration and new endeavors, from founders to senior leaders.',
+    author: 'Sako Arts',
+    role: 'Cofounder & CTO, FruitPunch AI'
+  },
+  {
+    quote: 'He inspires people to stay true to their goals and ideals, regardless of what others think or where the money may push him to go.',
+    author: 'Daan Streng',
+    role: 'Chief Engineer, FruitPunch AI'
+  },
+  {
+    quote: 'Buster has the strong ability to translate high-level ideas into testable experiments. Using the data and analysis gathered to build a plan grounded in truth.',
+    author: 'Dorian Groen',
+    role: 'Challenge Manager, FruitPunch AI'
+  },
+  {
+    quote: 'He galvanizes AI engineers to apply their skills towards global challenges and the greater good.',
+    author: 'Arjé Cahn',
+    role: 'Investor, Shamrock Ventures'
+  }
+];
+---
+
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <span class="section-label" style="text-align:center; display:block;">Testimonials</span>
+    <div class="testimonials__carousel" id="testimonial-carousel">
+      {testimonials.map((t, i) => (
+        <div class={`testimonial-slide ${i === 0 ? 'is-active' : ''}`} data-index={i}>
+          <p class="testimonial-slide__quote">{t.quote}</p>
+          <span class="testimonial-slide__author">{t.author}</span>
+          <span class="testimonial-slide__role">{t.role}</span>
+        </div>
+      ))}
+    </div>
+    <div class="testimonials__dots" id="testimonial-dots">
+      {testimonials.map((_, i) => (
+        <button
+          class={`testimonials__dot ${i === 0 ? 'is-active' : ''}`}
+          data-index={i}
+          aria-label={`Go to testimonial ${i + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById('testimonial-carousel');
+  const dotsContainer = document.getElementById('testimonial-dots');
+
+  if (carousel && dotsContainer) {
+    const slides = carousel.querySelectorAll('.testimonial-slide');
+    const dots = dotsContainer.querySelectorAll('.testimonials__dot');
+    let current = 0;
+    let interval: ReturnType<typeof setInterval>;
+    let paused = false;
+
+    function goTo(index: number) {
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = index;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+
+    function next() {
+      if (!paused) goTo((current + 1) % slides.length);
+    }
+
+    interval = setInterval(next, 6000);
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const idx = Number((dot as HTMLElement).dataset.index);
+        goTo(idx);
+        clearInterval(interval);
+        interval = setInterval(next, 6000);
+      });
+    });
+
+    carousel.addEventListener('mouseenter', () => { paused = true; });
+    carousel.addEventListener('mouseleave', () => { paused = false; });
+  }
+</script>
